@@ -179,7 +179,7 @@ void playerMove(gameState& gs)
 				correct = false;
 		}
 
-		int* newPath = (int*)alloca(path.size() * sizeof(int));
+		int* newPath = new int[path.size()];
 		if (!correct)
 		{
 			shuffle(newPath, path.size());
@@ -205,7 +205,8 @@ void playerMove(gameState& gs)
 				return;
 			}
 		}
-
+		delete[] newPath;
+		
 		std::cout << "NOTHING HAPPEND. BUT YOU LOST ONE ARROW AND WOKE UP THE VAMPUS" << std::endl;
 		if (--gs.arrowCount == 0)
 		{
